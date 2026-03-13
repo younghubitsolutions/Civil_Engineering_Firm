@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elementa Engineering | Sustainable Infrastructure</title>
+  <!-- Tailwind + Font Awesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS for scroll animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Swiper for full-screen carousel -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    /* smooth scroll & base */
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background-color: #fcfaf7; }
+    /* swiper custom styles - earthy palette */
+    .swiper-pagination-bullet-active { background: #bc6c25 !important; }
+    .swiper-button-next, .swiper-button-prev { color: #bc6c25; }
+    /* image overlay - warm gradient */
+    .hero-overlay {
+      background: linear-gradient(90deg, rgba(88, 53, 28, 0.85) 0%, rgba(146, 98, 57, 0.6) 50%, transparent 100%);
+    }
+    /* floating animation for subtle movement */
+    @keyframes subtle-float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
+    }
+    .float-icon { animation: subtle-float 4s ease-in-out infinite; }
+    /* button primary - terracotta */
+    .btn-primary {
+      background: linear-gradient(145deg, #bc6c25, #9e5c2a);
+      box-shadow: 0 10px 20px -8px rgba(188, 108, 37, 0.5);
+      transition: all 0.25s ease;
+    }
+    .btn-primary:hover {
+      transform: scale(1.02) translateY(-3px);
+      box-shadow: 0 20px 30px -8px #bc6c25;
+    }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
+      transition: 0.25s;
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.2);
+      border-color: #bc6c25;
+      color: #bc6c25;
+    }
+    /* team image overlay */
+    .team-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(88, 53, 28, 0.8) 100%);
+      border-radius: 1rem;
+      pointer-events: none;
+    }
+    /* glassmorphism cards for services - warm white */
+    .glass-card {
+      background: rgba(255, 251, 245, 0.9);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(188, 108, 37, 0.15);
+      box-shadow: 0 20px 40px -12px rgba(88, 53, 28, 0.2);
+    }
+    /* modern scrollbar - terracotta */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #ece3d9; }
+    ::-webkit-scrollbar-thumb { background: #bc6c25; border-radius: 8px; }
+    /* fix for navbar covering anchor: add scroll padding */
+    html {
+      scroll-padding-top: 90px; /* prevents content hiding under fixed nav */
+    }
+  </style>
+</head>
+<body class="antialiased overflow-x-hidden text-stone-800">
+
+<!-- FIXED NAVBAR (lighter, earthy) -->
+<nav class="fixed w-full z-40 top-0 bg-[#fcf8f2]/90 backdrop-blur-md shadow-md border-b border-[#e7dacd] py-3 px-6 lg:px-12 flex items-center justify-between">
+  <div class="flex items-center gap-2 text-2xl font-bold tracking-tight text-stone-800">
+    <i class="fa-solid fa-helmet-safety text-4xl text-[#bc6c25]"></i>
+    <span>ELEMENTA<span class="text-[#bc6c25]">.ENG</span></span>
+  </div>
+  <div class="hidden md:flex gap-8 font-medium text-sm uppercase tracking-wider text-stone-700">
+    <a href="#home" class="hover:text-[#bc6c25] transition">Home</a>
+    <a href="#services" class="hover:text-[#bc6c25] transition">Services</a>
+    <a href="#projects" class="hover:text-[#bc6c25] transition">Projects</a>
+    <a href="#team" class="hover:text-[#bc6c25] transition">Team</a>
+    <a href="#contact" class="hover:text-[#bc6c25] transition">Contact</a>
+  </div>
+  <a href="#contact" class="hidden md:flex items-center gap-2 bg-[#bc6c25] hover:bg-[#9e5c2a] text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg transition"><i class="fa-solid fa-leaf"></i> Green inquiry</a>
+</nav>
+
+<!-- HERO SECTION: fullscreen carousel with extra top padding so content isn't hidden -->
+<section class="relative w-full min-h-screen pt-20" id="home"> <!-- pt-20 pushes content below fixed navbar -->
+  <!-- Swiper carousel fullscreen -->
+  <div class="swiper h-screen w-full absolute top-0 left-0" id="heroSwiper" style="z-index: 0;">
+    <div class="swiper-wrapper">
+      <!-- slide 1 - construction site earthy -->
+      <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop');">
+        <div class="hero-overlay absolute inset-0"></div>
+      </div>
+      <!-- slide 2 - bridge warm light -->
+      <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1590577976322-3d2d6e2130d5?q=80&w=2070&auto=format&fit=crop');">
+        <div class="hero-overlay absolute inset-0"></div>
+      </div>
+      <!-- slide 3 - architect blueprint -->
+      <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop');">
+        <div class="hero-overlay absolute inset-0"></div>
+      </div>
+    </div>
+    <!-- Pagination, navigation -->
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev hidden lg:flex"></div>
+    <div class="swiper-button-next hidden lg:flex"></div>
+  </div>
+
+  <!-- Hero text overlay (positioned with pt to avoid navbar) - relative to section, not swiper -->
+  <div class="relative z-20 flex items-center min-h-screen" style="pointer-events: none;">
+    <div class="max-w-7xl mx-auto px-8 lg:px-16 text-white" style="pointer-events: auto;">
+      <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+        <span class="inline-block bg-[#bc6c25]/30 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-semibold tracking-widest border border-[#e3b48c]"><i class="fa-regular fa-compass mr-2"></i> FOUNDED 1998 – EARTH-CENTRIC</span>
+        <h1 class="text-5xl lg:text-7xl font-black leading-tight mt-8 drop-shadow-2xl">Building with <span class="text-[#f2c68a]">earth</span><br>and integrity</h1>
+        <p class="text-xl lg:text-2xl max-w-2xl text-stone-100 mt-6">Civil engineering rooted in sustainability: structural design, water systems, and infrastructure that last.</p>
+        <div class="flex flex-wrap gap-5 mt-12">
+          <a href="#contact" class="btn-primary text-white font-bold px-10 py-5 rounded-full text-lg flex items-center gap-3 shadow-2xl"><i class="fa-regular fa-handshake"></i> Start your project</a>
+          <a href="#projects" class="btn-outline text-white font-bold px-10 py-5 rounded-full text-lg flex items-center gap-2"><i class="fa-solid fa-arrow-right"></i> See portfolio</a>
+        </div>
+        <!-- mini stats with warm palette -->
+        <div class="grid grid-cols-3 gap-8 mt-20 max-w-lg">
+          <div class="border-l-4 border-[#f2c68a] pl-4"><span class="block text-3xl font-black">380+</span><span class="text-sm opacity-90">projects</span></div>
+          <div class="border-l-4 border-[#f2c68a] pl-4"><span class="block text-3xl font-black">28</span><span class="text-sm opacity-90">experts</span></div>
+          <div class="border-l-4 border-[#f2c68a] pl-4"><span class="block text-3xl font-black">100%</span><span class="text-sm opacity-90">safe delivery</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- rest of the content with new warm palette: terracotta (#bc6c25), olive/earthy complements, cream background -->
+<main class="bg-[#fcf8f2]">
+
+  <!-- COMPANY MISSION (warm earthy) -->
+  <section class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div data-aos="fade-right">
+        <span class="text-[#bc6c25] font-bold tracking-widest text-sm">OUR PHILOSOPHY</span>
+        <h2 class="text-4xl lg:text-5xl font-black text-stone-800 mt-3">Rooted in the land,<br>reaching for the future</h2>
+        <p class="text-stone-600 text-lg mt-6">Elementa Engineering blends timeless materials with modern science. From the Himalayas to the Terai, we deliver infrastructure that respects both nature and community. Our team brings two decades of experience in seismic‑resistant construction, ethical sourcing, and community‑first planning.</p>
+        <div class="flex gap-6 mt-10">
+          <div><i class="fa-solid fa-seedling text-[#bc6c25] text-3xl"></i><p class="font-bold mt-2">Mission</p><p class="text-sm text-stone-500">Regenerative infrastructure</p></div>
+          <div><i class="fa-solid fa-mountain text-[#bc6c25] text-3xl"></i><p class="font-bold mt-2">Vision</p><p class="text-sm text-stone-500">Live in harmony with terrain</p></div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-5" data-aos="fade-left">
+        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1974&auto=format&fit=crop" class="rounded-3xl shadow-2xl h-64 object-cover w-full">
+        <img src="https://images.unsplash.com/photo-1628624747186-e9411df6eac2?q=80&w=1974&auto=format&fit=crop" class="rounded-3xl shadow-2xl h-72 object-cover w-full mt-8">
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES section with warm glass cards -->
+  <section id="services" class="py-24 bg-[#e7dacd] text-stone-800">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto" data-aos="zoom-in">
+        <span class="text-[#bc6c25] font-semibold tracking-widest">WHAT WE OFFER</span>
+        <h2 class="text-4xl lg:text-5xl font-black mt-3">Holistic civil engineering</h2>
+        <p class="text-stone-600 mt-3">Every service infused with durability and environmental mindfulness.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7 mt-20">
+        <!-- service cards with warm glass -->
+        <div class="glass-card p-8 rounded-3xl hover:scale-[1.02] transition duration-300" data-aos="flip-up">
+          <i class="fa-solid fa-draw-polygon text-5xl text-[#bc6c25] mb-5 float-icon"></i>
+          <h3 class="text-2xl font-bold">Structural engineering</h3>
+          <p class="mt-2 text-stone-600">High‑rise, seismic‑resistant, and low‑impact structures with advanced modeling.</p>
+        </div>
+        <div class="glass-card p-8 rounded-3xl hover:scale-[1.02] transition duration-300" data-aos="flip-up" data-aos-delay="100">
+          <i class="fa-solid fa-road text-5xl text-[#bc6c25] mb-5 float-icon"></i>
+          <h3 class="text-2xl font-bold">Roads & bridges</h3>
+          <p class="mt-2 text-stone-600">Mountain highways, cable bridges, and drainage-integrated pavements.</p>
+        </div>
+        <div class="glass-card p-8 rounded-3xl hover:scale-[1.02] transition duration-300" data-aos="flip-up" data-aos-delay="200">
+          <i class="fa-solid fa-water text-5xl text-[#bc6c25] mb-5 float-icon"></i>
+          <h3 class="text-2xl font-bold">Water & drainage</h3>
+          <p class="mt-2 text-stone-600">Rainwater harvesting, treatment plants, and erosion control systems.</p>
+        </div>
+        <div class="glass-card p-8 rounded-3xl hover:scale-[1.02] transition duration-300" data-aos="flip-up">
+          <i class="fa-solid fa-ruler-combined text-5xl text-[#bc6c25] mb-5 float-icon"></i>
+          <h3 class="text-2xl font-bold">Surveying & GIS</h3>
+          <p class="mt-2 text-stone-600">Drone topography, cadastral mapping, and land suitability analysis.</p>
+        </div>
+        <div class="glass-card p-8 rounded-3xl hover:scale-[1.02] transition duration-300" data-aos="flip-up" data-aos-delay="100">
+          <i class="fa-solid fa-chart-line text-5xl text-[#bc6c25] mb-5 float-icon"></i>
+          <h3 class="text-2xl font-bold">Project management</h3>
+          <p class="mt-2 text-stone-600">Lean construction, cost control, and community engagement.</p>
+        </div>
+        <div class="glass-card p-8 rounded-3xl hover:scale-[1.02] transition duration-300" data-aos="flip-up" data-aos-delay="200">
+          <i class="fa-solid fa-building text-5xl text-[#bc6c25] mb-5 float-icon"></i>
+          <h3 class="text-2xl font-bold">Renovation & retrofitting</h3>
+          <p class="mt-2 text-stone-600">Heritage restoration, seismic upgrades, and adaptive reuse.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT PORTFOLIO (earthy cards) -->
+  <section id="projects" class="py-24 bg-[#fcf8f2]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div data-aos="fade-up" class="text-center">
+        <span class="text-[#bc6c25] font-bold">PORTFOLIO</span>
+        <h2 class="text-4xl lg:text-5xl font-black text-stone-800 mt-2">Landmark projects</h2>
+      </div>
+      <div class="grid lg:grid-cols-3 gap-8 mt-20">
+        <!-- project card full image overlay -->
+        <div class="group relative h-96 rounded-3xl overflow-hidden shadow-2xl" data-aos="zoom-in">
+          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#58351c] via-[#8b5a2e]/60 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-8 text-white">
+            <span class="bg-[#bc6c25] px-3 py-1 rounded-full text-xs font-bold">2024</span>
+            <h3 class="text-2xl font-bold mt-3">Himalayan Residences</h3>
+            <p class="text-sm opacity-90">30‑storey · Kathmandu</p>
+          </div>
+        </div>
+        <div class="group relative h-96 rounded-3xl overflow-hidden shadow-2xl" data-aos="zoom-in" data-aos-delay="100">
+          <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#58351c] via-[#8b5a2e]/60 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-8 text-white">
+            <span class="bg-[#bc6c25] px-3 py-1 rounded-full text-xs font-bold">2023</span>
+            <h3 class="text-2xl font-bold mt-3">Karnali Bridge</h3>
+            <p class="text-sm opacity-90">560m · connectivity</p>
+          </div>
+        </div>
+        <div class="group relative h-96 rounded-3xl overflow-hidden shadow-2xl" data-aos="zoom-in" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1628626135352-7beef564a02d?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#58351c] via-[#8b5a2e]/60 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-8 text-white">
+            <span class="bg-[#bc6c25] px-3 py-1 rounded-full text-xs font-bold">2025</span>
+            <h3 class="text-2xl font-bold mt-3">BP Highway upgrade</h3>
+            <p class="text-sm opacity-90">120km rigid pavement</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM section -->
+  <section id="team" class="py-24 bg-[#e7dacd]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center" data-aos="fade-down">
+        <h2 class="text-4xl lg:text-5xl font-black text-stone-800">The people behind the plans</h2>
+        <p class="text-stone-600 mt-2">Engineers, designers, and thinkers</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+        <div class="relative team-card rounded-2xl overflow-hidden shadow-2xl" data-aos="fade-up">
+          <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=2070&auto=format&fit=crop" class="h-96 w-full object-cover">
+          <div class="absolute bottom-0 left-0 p-5 text-white z-10">
+            <h4 class="text-xl font-bold">Er. Rajesh Thapa</h4>
+            <p class="text-[#f2c68a]">Chief Structural Engineer</p>
+          </div>
+        </div>
+        <div class="relative team-card rounded-2xl overflow-hidden shadow-2xl" data-aos="fade-up" data-aos-delay="100">
+          <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=2070&auto=format&fit=crop" class="h-96 w-full object-cover">
+          <div class="absolute bottom-0 left-0 p-5 text-white z-10">
+            <h4 class="text-xl font-bold">Srijana Gurung</h4>
+            <p class="text-[#f2c68a]">Project Director</p>
+          </div>
+        </div>
+        <div class="relative team-card rounded-2xl overflow-hidden shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=2070&auto=format&fit=crop" class="h-96 w-full object-cover">
+          <div class="absolute bottom-0 left-0 p-5 text-white z-10">
+            <h4 class="text-xl font-bold">Deepak Shrestha</h4>
+            <p class="text-[#f2c68a]">Geotechnical Lead</p>
+          </div>
+        </div>
+        <div class="relative team-card rounded-2xl overflow-hidden shadow-2xl" data-aos="fade-up" data-aos-delay="300">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2070&auto=format&fit=crop" class="h-96 w-full object-cover">
+          <div class="absolute bottom-0 left-0 p-5 text-white z-10">
+            <h4 class="text-xl font-bold">Prakash Karki</h4>
+            <p class="text-[#f2c68a]">Construction Manager</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US + TESTIMONIALS (warm and earthy) -->
+  <section class="py-24 bg-[#58351c] text-white">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
+      <div data-aos="fade-right">
+        <h2 class="text-4xl lg:text-5xl font-black">Why partners <span class="text-[#f2c68a]">trust us</span></h2>
+        <div class="space-y-6 mt-10">
+          <div class="flex gap-5"><i class="fa-regular fa-circle-check text-[#f2c68a] text-3xl"></i><div><span class="text-xl font-bold">Heritage + innovation</span><p class="text-stone-200">Local knowledge with global engineering standards.</p></div></div>
+          <div class="flex gap-5"><i class="fa-regular fa-circle-check text-[#f2c68a] text-3xl"></i><div><span class="text-xl font-bold">Ethical material sourcing</span><p class="text-stone-200">Low‑carbon concrete, locally quarried stone.</p></div></div>
+          <div class="flex gap-5"><i class="fa-regular fa-circle-check text-[#f2c68a] text-3xl"></i><div><span class="text-xl font-bold">On time, every time</span><p class="text-stone-200">98% projects delivered within schedule.</p></div></div>
+        </div>
+      </div>
+      <!-- TESTIMONIALS -->
+      <div class="bg-white/10 backdrop-blur-sm p-10 rounded-3xl border border-[#b99e7c]" data-aos="fade-left">
+        <i class="fa-solid fa-quote-right text-6xl text-[#f2c68a]/40"></i>
+        <div class="space-y-8 mt-6">
+          <div><p class="text-xl italic">“Elementa's design for our township reduced excavation waste by 30% — truly sustainable.”</p><div class="flex items-center gap-4 mt-6"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" class="w-14 h-14 rounded-full object-cover"><div><strong class="text-white">— Rajan KC</strong><p class="text-sm text-[#f2c68a]">MD, Valley Developers</p></div></div></div>
+          <div><p class="text-xl italic">“The bridge withstood the monsoon and heavy traffic perfectly. Great collaboration.”</p><div class="flex items-center gap-4 mt-6"><img src="https://images.unsplash.com/photo-1494790108777-466d85388023?q=80&w=1974&auto=format&fit=crop" class="w-14 h-14 rounded-full object-cover"><div><strong class="text-white">— Anjali KC</strong><p class="text-sm text-[#f2c68a]">Project Director, DOI</p></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT with earthy cards -->
+  <section id="contact" class="py-24 bg-[#fcf8f2]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center" data-aos="fade-down">
+        <h2 class="text-4xl lg:text-5xl font-black text-stone-800">Start a conversation</h2>
+        <p class="text-stone-600 text-lg mt-2">We're here to bring your vision to life.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 mt-20">
+        <div class="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition border-l-8 border-[#bc6c25]" data-aos="flip-left">
+          <i class="fa-solid fa-phone-volume text-4xl text-[#bc6c25] mb-4"></i>
+          <h3 class="text-2xl font-bold">Call</h3>
+          <p class="text-2xl font-mono text-stone-700 mt-2">+977 9762519563</p>
+          <p class="text-sm text-stone-500">emergency line</p>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition border-l-8 border-[#bc6c25]" data-aos="flip-left" data-aos-delay="150">
+          <i class="fa-solid fa-envelope text-4xl text-[#bc6c25] mb-4"></i>
+          <h3 class="text-2xl font-bold">Email</h3>
+          <p class="text-lg text-stone-700 break-words">info@younghubitsolutions.com</p>
+          <p class="text-sm text-stone-500">reply within 12h</p>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition border-l-8 border-[#bc6c25]" data-aos="flip-left" data-aos-delay="300">
+          <i class="fa-solid fa-location-dot text-4xl text-[#bc6c25] mb-4"></i>
+          <h3 class="text-2xl font-bold">Office</h3>
+          <p class="text-xl text-stone-700">Kalanki, Kathmandu</p>
+          <p class="text-sm text-stone-500">opposite Sabah Bank</p>
+        </div>
+      </div>
+      <!-- map -->
+      <div class="mt-16 rounded-3xl overflow-hidden shadow-2xl h-80" data-aos="zoom-in">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14131.03452373596!2d85.287613!3d27.696823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19a4eae5eef9%3A0x1e3a1b4f0b0e1d!2sKalanki%2C%20Kathmandu!5e0!3m2!1sen!2snp!4v1689012345678" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" class="grayscale-0 hover:grayscale"></iframe>
+      </div>
+      <!-- big button -->
+      <div class="text-center mt-16">
+        <a href="tel:9762519563" class="btn-primary inline-flex text-white font-bold text-2xl px-16 py-6 rounded-full gap-4 items-center shadow-2xl"><i class="fa-regular fa-calendar-check"></i> Speak to an engineer</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- footer -->
+<footer class="bg-[#2f1f13] text-[#cfb595] py-8 text-center">
+  <p>© 2025 Elementa Engineering — building with the earth in mind.</p>
+</footer>
+
+<!-- scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  AOS.init({ duration: 800, once: false, mirror: true, offset: 100 });
+
+  // fullscreen swiper init
+  new Swiper('#heroSwiper', {
+    loop: true,
+    autoplay: { delay: 5000, disableOnInteraction: false },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    effect: 'fade',
+    fadeEffect: { crossFade: true },
+    speed: 1200,
+  });
+</script>
+</body>
+</html>
